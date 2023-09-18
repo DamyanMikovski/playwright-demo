@@ -1,26 +1,45 @@
-import {expect, test} from "@playwright/test"
-import { ScreenshotHelper } from "../../utils/screenshotsHelper"
+import { expect, test } from "@playwright/test";
+import { ScreenshotHelper } from "../../utils/screenshotsHelper";
+import { navigationBar } from "../../utils/locators/locatorsHelper";
+import { urlPages } from "../../utils/pages-urls/urlHelper";
 
+test("Art page-visual", async ({ page }) => {
+  const screenshotHelper = new ScreenshotHelper(page, urlPages.artPage);
 
-test("Art page-visual", async({page}) => {
-    const screenshotHelper = new ScreenshotHelper(page);
+  await screenshotHelper.takePageScreenshot("testScreenshot");
+  await page.goto(urlPages.artPage);
 
-    await screenshotHelper.takePageScreenshot("testScreenshot");
-    await page.goto("/")
-    
-    await expect(page).toHaveScreenshot("testScreenshot.png");
-})
+  await expect(page).toHaveScreenshot("testScreenshot.png");
+});
 
-test("Art page-visual-Full-Page", async({page}) => {
-    const screenshotHelper = new ScreenshotHelper(page);
+test("Art page-visual-Full-Page", async ({ page }) => {
+  const screenshotHelper = new ScreenshotHelper(page, urlPages.artPage);
 
-    await screenshotHelper.takeFullScreenScreenshot("ArtPageFulPage")
-    await page.goto("/")
-    await expect(page).toHaveScreenshot("ArtPageFulPage.png", 
-    {fullPage : true})
-})
+  await screenshotHelper.takeFullScreenScreenshot("ArtFullPage");
+  await page.goto(urlPages.artPage);
+  await expect(page).toHaveScreenshot("ArtFullPage.png", {
+    fullPage: true,
+  });
+});
 
-test.skip("Negative-Art page-visual", async({page}) => {
-    await page.goto("/")
-    await expect(page).toHaveScreenshot("ArtPageFulPage.png")
-})
+test("Verify BasketCounter element-visual", async ({ page }) => {
+    const screenshotHelper = new ScreenshotHelper(page, urlPages.artPage);
+    const basketCounterLocator = navigationBar.basketCounter;
+  
+    await screenshotHelper.takeScreenshotByLocator("BasketCounter", basketCounterLocator);
+  
+    await page.goto(urlPages.artPage);
+    await expect(page.locator(basketCounterLocator)).toHaveScreenshot("BasketCounter.png");
+  });
+
+  test("Verify BasketCounter full page page element-visual", async ({ page }) => {
+    const screenshotHelper = new ScreenshotHelper(page, urlPages.artPage);
+    const basketCounterLocator = navigationBar.basketCounter;
+  
+    await screenshotHelper.takeScreenshotByLocator("BasketCounter", basketCounterLocator);
+  
+    await page.goto(urlPages.artPage);
+    await expect(page.locator(basketCounterLocator)).toHaveScreenshot("BasketCounter.png", {
+        fullPage: true
+    } );
+  });

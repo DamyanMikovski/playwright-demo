@@ -11,7 +11,7 @@ import { PaymentPage } from '../page-objects/PaymentPage.js'
 import { userPaymentDetails } from '../data/userPaymentDetails.js'
 
 
-test.skip("New User End-to-End test journey", async ({page}) => {
+test("New User End-to-End test journey", async ({page}) => {
     const productPage = new ProductsPage(page)
     await productPage.visit()
    
