@@ -1,7 +1,8 @@
 export class ScreenshotHelper {
-  constructor(page) {
+  constructor(page, initialUrl) {
     this.page = page
     this.filePathPrefix = "tests/visual_comparison/home_page.spec.js-snapshots/"
+    this.initialUrl = initialUrl
   }
 
   generateScreenshotPath(filePath) {
@@ -9,7 +10,8 @@ export class ScreenshotHelper {
   }
 
     async takePageScreenshot(screenshotName) {
-    await this.page.goto("/");
+    
+    await this.page.goto(this.initialUrl);
     await this.page.screenshot({ path: this.generateScreenshotPath(`${screenshotName}-chromium-win32.png`) })
   }
 
