@@ -43,3 +43,16 @@ test("Verify BasketCounter element-visual", async ({ page }) => {
         fullPage: true
     } );
   });
+
+  test("Verify Checkout-full-page-visual", async ({ page }) => {
+    const screenshotHelper = new ScreenshotHelper(page, urlPages.checkoutPage);
+  
+    await screenshotHelper.takeFullScreenScreenshot
+    ("Checkout-full-page");
+  
+    await page.goto(urlPages.checkoutPage);
+    await expect(page).toHaveScreenshot("Checkout-full-page.png", {
+        fullPage: true
+    } );
+  });
+
