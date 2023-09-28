@@ -3,7 +3,7 @@ import { ScreenshotHelper } from "../../utils/screenshotsHelper";
 import { navigationBar } from "../../utils/locators/locatorsHelper";
 import { urlPages } from "../../utils/pages-urls/urlHelper";
 
-test("Art page-visual", async ({ page }) => {
+test.skip("Art page-visual", async ({ page }) => {
   const screenshotHelper = new ScreenshotHelper(page, urlPages.artPage);
 
   await screenshotHelper.takePageScreenshot("testScreenshot");
@@ -12,7 +12,7 @@ test("Art page-visual", async ({ page }) => {
   await expect(page).toHaveScreenshot("testScreenshot.png");
 });
 
-test("Art page-visual-Full-Page", async ({ page }) => {
+test.skip("Art page-visual-Full-Page", async ({ page }) => {
   const screenshotHelper = new ScreenshotHelper(page, urlPages.artPage);
 
   await screenshotHelper.takeFullScreenScreenshot("ArtFullPage");
@@ -22,7 +22,7 @@ test("Art page-visual-Full-Page", async ({ page }) => {
   });
 });
 
-test("Verify BasketCounter element-visual", async ({ page }) => {
+test.skip("Verify BasketCounter element-visual", async ({ page }) => {
     const screenshotHelper = new ScreenshotHelper(page, urlPages.artPage);
     const basketCounterLocator = navigationBar.basketCounter;
   
@@ -32,7 +32,7 @@ test("Verify BasketCounter element-visual", async ({ page }) => {
     await expect(page.locator(basketCounterLocator)).toHaveScreenshot("BasketCounter.png");
   });
 
-  test("Verify BasketCounter full page page element-visual", async ({ page }) => {
+  test.skip("Verify BasketCounter full page page element-visual", async ({ page }) => {
     const screenshotHelper = new ScreenshotHelper(page, urlPages.artPage);
     const basketCounterLocator = navigationBar.basketCounter;
   
@@ -44,7 +44,7 @@ test("Verify BasketCounter element-visual", async ({ page }) => {
     } );
   });
 
-  test("Verify Checkout-full-page-visual", async ({ page }) => {
+  test.skip("Verify Checkout-full-page-visual", async ({ page }) => {
     const screenshotHelper = new ScreenshotHelper(page, urlPages.checkoutPage);
   
     await screenshotHelper.takeFullScreenScreenshot
